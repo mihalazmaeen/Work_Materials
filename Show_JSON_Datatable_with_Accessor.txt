@@ -1,5 +1,5 @@
 Controller 
-  public function get_datatable_data(Request $request)
+     public function get_datatable_data(Request $request)
     {
         if(permission('user-group-access')){
             if($request->ajax()){
@@ -10,7 +10,7 @@ Controller
 
                 $this->set_datatable_default_property($request);
                 $list = $this->model->getDatatableList();
-                $customers = $this->model->get_datatable_query()->get();
+
                 // dd($customers);
 
                 $data = [];
@@ -40,10 +40,7 @@ Controller
                     $row[] = $value->group_description;
                      // Now it executes the query and returns a collection of models
 
-                    foreach ($customers as $value) {
-                        // Now you can access your custom attribute as a model property
-                        $row[] = $value->customer_names;
-                    }
+                    $row[] = $value->customer_names;
           
                     $row[] = permission('user-group-edit') ? change_status($value->id,$value->status,$value->group_name) : STATUS_LABEL[$value->status];
 
@@ -60,7 +57,6 @@ Controller
             return response()->json($output);
         }
     }
-
 Model
   public function getCustomerNamesAttribute()
     {
