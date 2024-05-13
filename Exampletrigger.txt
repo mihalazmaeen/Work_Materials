@@ -1,0 +1,17 @@
+CREATE TRIGGER [dbo].[triggername]
+ON [dbname].[dbo].[tablename]
+AFTER INSERT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    INSERT INTO target_table (id,other columns...)
+    SELECT NEWID(), other values,
+           CASE 
+               WHEN defined parameter = 'A' THEN 'This'
+               WHEN defined parameter = 'B' THEN 'That'
+               ELSE NULL -- or other case
+           END
+    FROM inserted
+    WHERE matching condition;
+END
