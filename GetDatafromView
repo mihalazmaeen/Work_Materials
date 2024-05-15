@@ -1,0 +1,34 @@
+// Create View with Common Table Expression
+
+CREATE view [dbo].[ExampleView]
+as
+WITH CTE AS (
+    SELECT 
+        Some Columns
+    FROM
+        Specific Table
+    LEFT JOIN
+        Another Table
+   
+    WHERE
+        some conditions
+)
+SELECT 
+    other columns
+FROM 
+    CTE
+WHERE 
+    RowNum = 1;
+
+**Create Model on Laravel for the View
+class ExampleModel extends BaseModel
+{
+    protected $table = 'ExampleView';
+
+    protected $guarded = [];
+}
+
+**Fetch Data In Controller from View
+$data=ExampleModel::get();
+
+Data is Automatically updated to the latest as it is coming from the view
