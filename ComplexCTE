@@ -1,0 +1,30 @@
+with FirstCTE AS (
+    -- New Query for Vaccines
+    SELECT
+	 -- Some Columns
+     
+    FROM Table1
+    JOIN Table2 rv ON Table1.id = Table2.id
+    GROUP BY Some Columns
+),
+SecondCTE AS (
+    -- Query 2 (your second query)
+   SELECT 
+     -- Some Columns
+   
+    STUFF((
+        SELECT ', ' +'ColumnA:'+ ISNULL(CONVERT(NVARCHAR(36), t3.ColumnA)+',' +'ColumnB:' +
+                COALESCE(t2.DrugDose, '') + ', '+'Drug Frequency:' +
+            
+        FROM Table3 t3
+        LEFT JOIN Table4 t4 ON t3.Id = t4.Id
+        WHERE Some Condition
+      
+        FOR XML PATH(''), TYPE).value('.', 'NVARCHAR(MAX)'), 1, 2, '') AS SomeName
+FROM Table5
+GROUP BY Table5.id
+),
+
+--Youn can use Max cases for avoiding group by CONSTRAINTS
+
+-- Select the column values you want to Show in Model
